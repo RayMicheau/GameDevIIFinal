@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 sceneSetups:
-- path: Assets/Scenes/Flocking Lab.unity
+- path: Assets/Scenes/JustinsCharacterTestScene.unity
   isLoaded: 1
   isActive: 1
-=======
-sceneSetups: []
->>>>>>> refs/remotes/origin/PlayerController
