@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class SimpleFSM : FSM {
+    public float healthValue = 10;
 
     public enum FSMState
     {
@@ -43,8 +44,8 @@ public class SimpleFSM : FSM {
     List<GameObject> FollowerList = new List<GameObject>();
     List<Vector3> FollowerOffsetList = new List<Vector3>();
     Vector3 tmpDest;
-
     Vector3 dir;
+
     // Use this for initialization
     protected override void Initialize() {
         FollowerOffsetList.Add(new Vector3(5.0f, 0.0f, 0.0f));
@@ -177,7 +178,6 @@ public class SimpleFSM : FSM {
         }
     }
 
-
     void UpdateFollowers()
     {
         Transform leaderTransform = transform;
@@ -226,12 +226,12 @@ public class SimpleFSM : FSM {
 
         //Check distance to player tank
         //if close enough, transition to chase!! O:
-        //if (Vector3.Distance(transform.position, m_playerTransform.position) <= 15.0f)
-        //{
-        //    Debug.Log("CHASE INITIATED");
+        if (Vector3.Distance(transform.position, m_playerTransform.position) <= 15.0f)
+        {
+            Debug.Log("CHASE INITIATED");
 
-        //    m_CurrentState = FSMState.CHASE;
-        //}
+            m_CurrentState = FSMState.CHASE;
+        }
 
     }
 
@@ -356,6 +356,15 @@ public class SimpleFSM : FSM {
             return true;
 
         return false;
+    }
+
+    public void TakeDamage(float damage)
+    {
+        healthValue -= damage;
+        if (healthValue <= 0)
+        {
+            Destroy(this);
+        }
     }
 
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class UnityFlockController : MonoBehaviour
 {
+
     public float minVelocity = 1; //Min Velocity
     public float maxVelocity = 8; //Max Flock speed
     public int flockSize = 0; //Number of flocks in the group

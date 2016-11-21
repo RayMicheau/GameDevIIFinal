@@ -3,6 +3,8 @@
 
 public class UnityFlock : MonoBehaviour
 {
+    public Vector3 curVelocity;
+    public float healthValue = 1;
     void Start()
     {
         int randColor = Random.Range(0, 10);
@@ -72,6 +74,24 @@ public class UnityFlock : MonoBehaviour
             Random.Range(0.0f, 1.0f), 
             Random.Range(0.0f, 1.0f), 
             Random.Range(0.0f, 1.0f), 0.9f, 1), 1f);
+
+        curVelocity = GetComponent<Rigidbody>().velocity;
+    }
+
+    void KillBorb()
+    {
+        controller.ListSize = controller.flockList.Count - 1;
+        controller.flockList.Remove(this);
+        Destroy(this);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        healthValue -= damage;
+        if(healthValue <= 0)
+        {
+            KillBorb();
+        }
     }
 
     private Vector3 steer()
